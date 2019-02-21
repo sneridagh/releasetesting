@@ -1,11 +1,30 @@
 {
-  "name": "@kitconcept/releasetesting",
-  "version": "1.0.0",
+  "name": "@sneridagh/releasetesting",
+  "version": "1.0.1",
   "description": "",
   "main": "changelogupdater.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dry-release": "release-it --dry-run",
+    "release": "release-it"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "release-it": {
+    "scripts": {
+      "changelog": "node changelogupdater.js",
+      "beforeStage": "node changelogupdater.js"
+    },
+    "git": {
+      "requireUpstream": false,
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": true,
+      "releaseName": "${version}"
+    }
+  },
+  "dependencies": {
+    "release-it": "^10.1.0"
+  }
 }
