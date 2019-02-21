@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.4 (unreleased)
+
+### Added
+
+### Changes
+
 ## 1.0.4 (2019-02-21)
 
 ### Added
