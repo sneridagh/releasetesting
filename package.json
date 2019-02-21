@@ -14,7 +14,7 @@
     "scripts": {
       "changelog": "node changelogupdater.js excerpt",
       "beforeStage": "node changelogupdater.js bump ${version}",
-      "afterRelease": "node changelogupdater.js back ${version}"
+      "afterRelease": "node changelogupdater.js back ${version} && git add . && git ci -am 'Back to development' && git push"
     },
     "git": {
       "requireUpstream": false,
