@@ -1,6 +1,6 @@
 {
-  "name": "@sneridagh/releasetesting",
-  "version": "1.0.2",
+  "name": "releasetesting",
+  "version": "1.0.3",
   "description": "",
   "main": "changelogupdater.js",
   "scripts": {
