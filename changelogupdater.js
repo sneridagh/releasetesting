@@ -10,6 +10,7 @@ if (process.argv.length < 3) {
 }
 
 const command = process.argv[2];
+const version = process.argv[3];
 console.log(command);
 
 function escapeRegExp(string) {
@@ -17,20 +18,40 @@ function escapeRegExp(string) {
 }
 
 try {
-  const data = fs.readFileSync("CHANGELOG.md", "utf8");
-  const [original, version, orig] = data.match(/##\s(.+)\s\((.+)\)/);
-  if (orig !== "unreleased") {
-    return console.log("Error, the CHANGELOG file is malformed.");
+  if (command === "excerpt") {
+    const data = fs.readFileSync("CHANGELOG.md", "utf8");
+    const allReleases = data.match(/##\s(.+)\s\((.+)\)/g);
+    // const re = new RegExp(escapeRegExp(allReleases[1]), 'g');
+    const index = data.indexOf(allReleases[1]);
+    let versionExcerpt = data.slice(0, index);
+    versionExcerpt = versionExcerpt.replace("# Change Log\n\n", "");
+    versionExcerpt = versionExcerpt.slice(
+      versionExcerpt.match("\n\n")["index"] + 2
+    );
+    process.stdout.write(versionExcerpt);
+    return;
   }
-  const currentDate = new Date();
-  const date = `${currentDate.getFullYear()}-${`0${currentDate.getMonth() +
-    1}`.slice(-2)}-${`0${currentDate.getDate()}`.slice(-2)}`;
 
-  const newLine = original.replace("unreleased", date);
-  const newChangelog = data.replace(original, newLine);
-
-  // Save data to disk if command is bump
   if (command === "bump") {
+    const data = fs.readFileSync("CHANGELOG.md", "utf8");
+    const [original, origVersion, orig] = data.match(/##\s(.+)\s\((.+)\)/);
+    if (orig !== "unreleased") {
+      return console.log("Error, the CHANGELOG file is malformed.");
+    }
+    const currentDate = new Date();
+    const date = `${currentDate.getFullYear()}-${`0${currentDate.getMonth() +
+      1}`.slice(-2)}-${`0${currentDate.getDate()}`.slice(-2)}`;
+
+    if (version !== origVersion) {
+      console.log(`Updating to the given version ${version}`);
+    }
+    const newLine = original
+      .replace("unreleased", date)
+      .replace(origVersion, version);
+
+    const newChangelog = data.replace(original, newLine);
+
+    // Save data to disk if command is bump
     fs.writeFile("CHANGELOG.md", newChangelog, err => {
       // throws an error, you could also catch it here
       if (err) throw err;
@@ -38,15 +59,6 @@ try {
       // success case, the file was saved
       console.log("Updated version on CHANGELOG.md");
     });
-  }
-
-  if (command === "excerpt") {
-    const allReleases = data.match(/##\s(.+)\s\((.+)\)/g);
-    // const re = new RegExp(escapeRegExp(allReleases[1]), 'g');
-    const index = data.indexOf(allReleases[1]);
-    let versionExcerpt = data.slice(0, index);
-    versionExcerpt = versionExcerpt.replace("# Change Log\n\n", "");
-    process.stdout.write(versionExcerpt);
   }
 
   if (command === "back") {

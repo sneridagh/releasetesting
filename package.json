@@ -1,6 +1,6 @@
 {
   "name": "@sneridagh/releasetesting",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "changelogupdater.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "release-it": {
     "scripts": {
       "changelog": "node changelogupdater.js excerpt",
-      "beforeStage": "node changelogupdater.js bump",
+      "beforeStage": "node changelogupdater.js bump ${version}",
       "afterRelease": "node changelogupdater.js back ${version}"
     },
     "git": {
