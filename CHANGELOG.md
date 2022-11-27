@@ -8,6 +8,13 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.8 (2022-11-27)
+
+### Feature
+
+- Add towncrier support. Create RELEASING.md and move and update Releasing section from README.md into it. @sneridagh @stevepiercy [#3985](https://github.com/plone/volto/issues/3985)
+
+
 ## 1.0.7 (2022-11-27)
 
 ### Feature
