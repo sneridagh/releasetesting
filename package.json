@@ -1,6 +1,6 @@
 {
   "name": "releasetesting",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "changelogupdater.js",
   "scripts": {
