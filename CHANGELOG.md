@@ -8,6 +8,13 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.6 (2022-11-27)
+
+### Feature
+
+- Add Quanta toolbar as experimental feature @sneridagh [#3161](https://github.com/plone/volto/issues/3161)
+
+
 ## 1.0.5 (2022-11-27)
 
 ### Feature
