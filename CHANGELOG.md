@@ -1,5 +1,20 @@
 # Change Log
 
+<!-- You should *NOT* be adding new change log entries to this file.
+     You should create a file in the news directory instead.
+     For helpful instructions, please see:
+     https://6.dev-docs.plone.org/volto/developer-guidelines/contributing.html#create-a-pull-request
+-->
+
+<!-- towncrier release notes start -->
+
+## 1.0.5 (2022-11-27)
+
+### Feature
+
+- Add Quanta toolbar as experimental feature @sneridagh [#3161](https://github.com/plone/volto/issues/3161)
+
+
 ## 1.0.4 (unreleased)
 
 ### Added
